@@ -7,7 +7,7 @@ import cse332.types.MapCorners;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 /*
-   1) This class is used in version 4 to create the initial grid holding the total population for each grid position
+   1) This class is used in version 4 to create the initial grid holding the total population for each grid cell
    2) SEQUENTIAL_CUTOFF refers to the maximum number of census groups that should be processed by a single parallel task
    3) Note that merging the grids from the left and right subtasks should NOT be done in this class.
       You will need to implement the merging in parallel using a separate parallel class (MergeGridTask.java)

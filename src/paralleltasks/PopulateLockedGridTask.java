@@ -7,7 +7,7 @@ import cse332.types.MapCorners;
 import java.util.concurrent.locks.Lock;
 
 /*
-   1) This class is used in version 5 to create the initial grid holding the total population for each grid position
+   1) This class is used in version 5 to create the initial grid holding the total population for each grid cell
         - You should not be using the ForkJoin framework but instead should make use of threads and locks
         - Note: the resulting grid after all threads have finished running should be the same as the final grid from
           PopulateGridTask.java

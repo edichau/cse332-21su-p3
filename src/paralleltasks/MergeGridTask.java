@@ -6,7 +6,7 @@ import java.util.concurrent.RecursiveAction;
 
 /*
    1) This class is used by PopulateGridTask to merge two grids in parallel
-   2) SEQUENTIAL_CUTOFF refers to the maximum number of grid positions that should be processed by a single parallel task
+   2) SEQUENTIAL_CUTOFF refers to the maximum number of grid cells that should be processed by a single parallel task
  */
 
 public class MergeGridTask extends RecursiveAction {
