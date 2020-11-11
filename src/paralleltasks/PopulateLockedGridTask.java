@@ -17,13 +17,13 @@ public class PopulateLockedGridTask extends Thread{
     CensusGroup[] censusGroups;
     int lo, hi, numRows, numColumns;
     MapCorners corners;
-    float cellWidth, cellHeight;
+    double cellWidth, cellHeight;
     int[][] populationGrid;
     Lock[][] lockGrid;
 
 
     public PopulateLockedGridTask(CensusGroup[] censusGroups, int lo, int hi, int numRows, int numColumns, MapCorners corners,
-                                float cellWidth, float cellHeight, int[][] popGrid, Lock[][] lockGrid) {
+                                  double cellWidth, double cellHeight, int[][] popGrid, Lock[][] lockGrid) {
         throw new NotYetImplementedException();
     }
 
