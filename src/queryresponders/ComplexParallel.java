@@ -9,7 +9,7 @@ import cse332.exceptions.*;
 public class ComplexParallel extends QueryResponder {
     private static final ForkJoinPool POOL = new ForkJoinPool();
 
-    public ComplexParallel(CensusData censusData, int numColumns, int numRows) {
+    public ComplexParallel(CensusGroup[] censusData, int numColumns, int numRows) {
         throw new NotYetImplementedException();
     }
 

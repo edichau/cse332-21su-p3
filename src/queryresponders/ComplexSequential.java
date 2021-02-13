@@ -9,7 +9,7 @@ import java.util.concurrent.ForkJoinPool;
 
 public class ComplexSequential extends QueryResponder {
 
-    public ComplexSequential(CensusData censusData, int numColumns, int numRows) {
+    public ComplexSequential(CensusGroup[] censusData, int numColumns, int numRows) {
         throw new NotYetImplementedException();
     }
 

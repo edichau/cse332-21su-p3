@@ -3,19 +3,19 @@ package cse332.types;
 
 public class CensusGroup {
 	public int   population;
-	public float realLatitude;
-	public float latitude;
-	public float longitude;
-	public CensusGroup(int pop, float lat, float lon) {
+	public double realLatitude;
+	public double latitude;
+	public double longitude;
+	public CensusGroup(int pop, double lat, double lon) {
 		population = pop;
 		realLatitude = lat;
 		latitude   = mercatorConversion(lat);
 		longitude  = lon;
 	}
 	
-	private float mercatorConversion(float lat){
-		float latpi = (float)(lat * Math.PI / 180);
-		float x = (float)Math.log(Math.tan(latpi) + 1 / Math.cos(latpi));
+	private double mercatorConversion(double lat){
+		double latpi = lat * Math.PI / 180;
+		double x = Math.log(Math.tan(latpi) + 1 / Math.cos(latpi));
 		//System.out.println(lat + " -> " + x);
 		return x;
 	}

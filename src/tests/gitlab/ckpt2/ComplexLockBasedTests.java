@@ -1,7 +1,8 @@
 package tests.gitlab.ckpt2;
 
-import cse332.types.CensusData;
 import static org.junit.Assert.assertEquals;
+
+import cse332.types.CensusGroup;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import queryresponders.ComplexLockBased;
@@ -9,7 +10,7 @@ import tests.gitlab.QueryResponderTests;
 
 public class ComplexLockBasedTests extends QueryResponderTests{
 
-    static CensusData data;
+    static CensusGroup[] data;
 
     @BeforeClass
     public static void init() {

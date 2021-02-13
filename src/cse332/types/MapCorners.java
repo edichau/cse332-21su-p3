@@ -5,16 +5,16 @@ package cse332.types;
 public class MapCorners {
     // invariant: right >= left and top >= bottom (i.e., numbers get bigger as you move up/right)
     // note in our census data longitude "West" is a negative number which nicely matches bigger-to-the-right
-	public float west;
-	public float east;
-	public float north;
-	public float south;
+	public double west;
+	public double east;
+	public double north;
+	public double south;
 	
-	public MapCorners(float l, float r, float t, float b) {
+	public MapCorners(double l, double r, double t, double b) {
 		west   = l;
-		east  = r;
-		north    = t;
-		south = b;
+		east   = r;
+		north  = t;
+		south  = b;
 	}
 
     public MapCorners(CensusGroup censusGroup) {

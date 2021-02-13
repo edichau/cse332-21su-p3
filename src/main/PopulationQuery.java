@@ -3,6 +3,7 @@ package main;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import cse332.interfaces.*;
@@ -19,7 +20,7 @@ public class PopulationQuery {
     public static final int LONGITUDE_INDEX  = 6;
 
     // parse the input file into a large array held in a CensusData object
-    public static CensusData parse(String filename) {
+    public static CensusGroup[] parse(String filename) {
         CensusData result = new CensusData();
         String dataFolderPath = "data/";
         try {
@@ -44,8 +45,8 @@ public class PopulationQuery {
                 int population = Integer.parseInt(tokens[POPULATION_INDEX]);
                 if(population != 0)
                     result.add(population,
-                               Float.parseFloat(tokens[LATITUDE_INDEX]),
-                               Float.parseFloat(tokens[LONGITUDE_INDEX]));
+                               Double.parseDouble(tokens[LATITUDE_INDEX]),
+                               Double.parseDouble(tokens[LONGITUDE_INDEX]));
             }
 
             fileIn.close();
@@ -57,7 +58,9 @@ public class PopulationQuery {
             System.err.println("Error in file format");
             System.exit(1);
         }
-        return result;
+        return Arrays.stream(result.data)
+                     .limit(result.data_size)
+                     .toArray(CensusGroup[]::new);
     }
 
     /**
@@ -86,7 +89,7 @@ public class PopulationQuery {
         int numRows = parseDim(args[2], "y");
 
         // Parse census data based on the given file
-        CensusData censusData = parse(fileName);
+        CensusGroup[] censusData = parse(fileName);
 
         // Use the third argument to execute the correct version
         QueryResponder version = null;

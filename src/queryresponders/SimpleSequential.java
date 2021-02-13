@@ -6,7 +6,7 @@ import cse332.exceptions.*;
 
 public class SimpleSequential extends QueryResponder {
 
-    public SimpleSequential(CensusData censusData, int numColumns, int numRows) {
+    public SimpleSequential(CensusGroup[] censusData, int numColumns, int numRows) {
         throw new NotYetImplementedException();
     }
 

@@ -9,7 +9,7 @@ import cse332.exceptions.*;
 public class SimpleParallel extends QueryResponder {
     private static final ForkJoinPool POOL = new ForkJoinPool();
 
-    public SimpleParallel(CensusData censusData, int numColumns, int numRows) {
+    public SimpleParallel(CensusGroup[] censusData, int numColumns, int numRows) {
         throw new NotYetImplementedException();
     }
 
