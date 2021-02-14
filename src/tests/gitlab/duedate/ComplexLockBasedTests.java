@@ -1,4 +1,4 @@
-package tests.gitlab.ckpt2;
+package tests.gitlab.duedate;
 
 import static org.junit.Assert.assertEquals;
 

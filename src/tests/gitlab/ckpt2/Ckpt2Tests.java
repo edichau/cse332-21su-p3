@@ -7,8 +7,7 @@ import org.junit.runners.Suite;
 
 @Suite.SuiteClasses({
         ComplexSequentialTests.class,
-        ComplexParallelTests.class,
-        ComplexLockBasedTests.class
+        ComplexParallelTests.class
 })
 
 public class Ckpt2Tests {
