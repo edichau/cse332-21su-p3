@@ -28,10 +28,15 @@ public abstract class QueryResponder {
     /**
      * Method that returns the total population in a query rectangle on
      * the grid defined by the four parameters passed in
-     * @param west The Western-most grid column that is part of the query rectangle; error if this is less than 1 or greater than numColumns.
-     * @param south The Southern-most grid row that is part of the query rectangle; error if this is less than 1 or greater than numRows.
-     * @param east The Eastern-most grid column that is part of the query rectangle; error if this is less than the Western-most column (equal is okay) or greater than numColumns.
-     * @param north The Northern-most grid row that is part of the query rectangle; error if this is less than the Southern-most column (equal is okay) or greater than numRows.
+     * @param west The Western-most grid column that is part of the query rectangle;
+     *             error if this is less than 1 or greater than numColumns.
+     * @param south The Southern-most grid row that is part of the query rectangle;
+     *              error if this is less than 1 or greater than numRows.
+     * @param east The Eastern-most grid column that is part of the query rectangle;
+     *             error if this is less than the Western-most column (equal is okay) or greater than numColumns.
+     * @param north The Northern-most grid row that is part of the query rectangle;
+     *              error if this is less than the Southern-most column (equal is okay) or greater than numRows.
+     * @throws IllegalArgumentException if any of the parameters don't follow the guidelines given above
      * @return the total population in the query rectangle
      */
     public abstract int getPopulation(int west, int south, int east, int north);
