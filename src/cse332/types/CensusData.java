@@ -15,12 +15,12 @@ public class CensusData {
 	
 	public void add(int population, double latitude, double longitude) {
 		if(data_size == data.length) { // resize
-			CensusGroup[] new_data = new CensusGroup[data.length*2];
-			for(int i=0; i < data.length; ++i)
+			CensusGroup[] new_data = new CensusGroup[data.length * 2];
+			for(int i = 0; i < data.length; ++i)
 				new_data[i] = data[i];
 			data = new_data;
 		}
-		CensusGroup g = new CensusGroup(population,latitude,longitude); 
+		CensusGroup g = new CensusGroup(population, latitude, longitude); 
 		data[data_size++] = g;
 	}
 }
