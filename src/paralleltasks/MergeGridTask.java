@@ -18,10 +18,12 @@ public class MergeGridTask extends RecursiveAction {
         throw new NotYetImplementedException();
     }
 
+    @Override
     protected void compute() {
         throw new NotYetImplementedException();
     }
 
+    // according to google gird means "prepare oneself for something difficult or challenging" so this typo is intentional :)
     private void sequentialMergeGird() {
         throw new NotYetImplementedException();
     }

@@ -54,13 +54,12 @@ public class ComplexLockBasedTests extends QueryResponderTests{
 
     @Test
     public void testHawaii_100_500() {
-        // Query Rectangle Coordinates: -163.33711  0.31838202 -151.48657 0.4372290
+
         assertEquals(1360301, STUDENT_100_500.getPopulation(10, 1, 20, 40));
     }
 
     @Test
     public void testCanada_100_500() {
-        // Query Rectangle Coordinates: -120.24425  1.0582047 -65.30085 1.6554109
         assertEquals(0, STUDENT_100_500.getPopulation(50, 250, 100, 450));
     }
 
@@ -90,21 +89,19 @@ public class ComplexLockBasedTests extends QueryResponderTests{
 
     @Test
     public void testCorners_20_40() {
-        assertEquals(0, STUDENT_100_500.getPopulation(1, 1, 1, 1));
-        assertEquals(0, STUDENT_100_500.getPopulation(20, 1, 20, 1));
-        assertEquals(0, STUDENT_100_500.getPopulation(1, 40, 1, 40));
-        assertEquals(0, STUDENT_100_500.getPopulation(20, 40, 20, 40));
+        assertEquals(0, STUDENT_20_40.getPopulation(1, 1, 1, 1));
+        assertEquals(0, STUDENT_20_40.getPopulation(20, 1, 20, 1));
+        assertEquals(0, STUDENT_20_40.getPopulation(1, 40, 1, 40));
+        assertEquals(0, STUDENT_20_40.getPopulation(20, 40, 20, 40));
     }
 
     @Test
     public void testHawaii_20_40() {
-        // Query Rectangle Coordinates: -163.33711  0.31838202 -151.48657 0.4372290
         assertEquals(1360301, STUDENT_20_40.getPopulation(2, 1, 4, 3));
     }
 
     @Test
     public void testCanada_20_40() {
-        // Query Rectangle Coordinates: -120.24425  1.0582047 -65.30085 1.6554109
         assertEquals(0, STUDENT_20_40.getPopulation(10, 20, 20, 35));
     }
 
