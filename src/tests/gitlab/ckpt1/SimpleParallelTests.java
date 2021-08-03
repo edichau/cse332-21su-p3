@@ -89,7 +89,7 @@ public class SimpleParallelTests extends QueryResponderTests {
     @Test
     public void testCorners_20_40() {
         assertEquals(0, STUDENT_20_40.getPopulation(1, 1, 1, 1));
-        assertEquals(0, STUDENT_20_40.getPopulation(20, 1, 20, 1));
+        assertEquals(3725789, STUDENT_20_40.getPopulation(20, 1, 20, 1));
         assertEquals(0, STUDENT_20_40.getPopulation(1, 40, 1, 40));
         assertEquals(0, STUDENT_20_40.getPopulation(20, 40, 20, 40));
     }
