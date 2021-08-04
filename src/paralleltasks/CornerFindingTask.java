@@ -20,14 +20,30 @@ public class CornerFindingTask extends RecursiveTask<CornerFindingResult> {
     final int SEQUENTIAL_CUTOFF = 10000;
 
     public CornerFindingTask(CensusGroup[] censusGroups, int lo, int hi) {
-        throw new NotYetImplementedException();
+        this.censusGroups = censusGroups;
+        this.lo = lo;
+        this.hi = hi;
     }
 
     // Returns a pair of MapCorners for the grid and Integer for the total population
     // Key = grid, Value = total population
     @Override
     protected CornerFindingResult compute() {
-        throw new NotYetImplementedException();
+        if (hi - lo <= SEQUENTIAL_CUTOFF) {
+            return sequentialCornerFinding(censusGroups, lo, hi);
+        }
+        int mid = lo + (hi - lo) / 2;
+
+        CornerFindingTask left = new CornerFindingTask(censusGroups, lo, mid);
+        CornerFindingTask right = new CornerFindingTask(censusGroups, mid, hi);
+
+        left.fork();
+
+        CornerFindingResult rightResult = right.compute();
+        CornerFindingResult leftResult = left.join();
+
+        //gotta figure out what to do here
+        return leftResult + rightResult;
     }
 
     private CornerFindingResult sequentialCornerFinding(CensusGroup[] censusGroups, int lo, int hi) {
