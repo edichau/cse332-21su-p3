@@ -51,9 +51,7 @@ public class GetPopulationTask extends RecursiveTask<Integer> {
 
         int i = lo;
         while (i < hi) {
-
             MapCorners group = new MapCorners(censusGroups[i]);
-
             if (group.west >= w && group.south >= s && group.east <= e && group.north <= n) {
                 population += censusGroups[i].population;
             }

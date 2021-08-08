@@ -3,6 +3,7 @@ package paralleltasks;
 import cse332.exceptions.NotYetImplementedException;
 import cse332.types.CensusGroup;
 import cse332.types.CornerFindingResult;
+import cse332.types.MapCorners;
 
 import java.util.concurrent.RecursiveTask;
 
@@ -42,12 +43,21 @@ public class CornerFindingTask extends RecursiveTask<CornerFindingResult> {
         CornerFindingResult rightResult = right.compute();
         CornerFindingResult leftResult = left.join();
 
-        //gotta figure out what to do here
-        return leftResult + rightResult;
+        MapCorners bestResult = rightResult.getMapCorners().encompass(leftResult.getMapCorners());
+        int totalPop = rightResult.getTotalPopulation() + leftResult.getTotalPopulation();
+        return new CornerFindingResult(bestResult, totalPop);
     }
 
     private CornerFindingResult sequentialCornerFinding(CensusGroup[] censusGroups, int lo, int hi) {
-        throw new NotYetImplementedException();
+        int totalPop = 0;
+        MapCorners init = new MapCorners(censusGroups[0]);
+        MapCorners temp;
+        for (int i = lo; i < hi; i++) {
+            totalPop += censusGroups[i].population;
+            temp = new MapCorners(censusGroups[i]);
+            init = init.encompass(temp);
+        }
+        return new CornerFindingResult(init, totalPop);
     }
 }
 
