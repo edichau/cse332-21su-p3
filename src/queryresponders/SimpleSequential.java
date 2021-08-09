@@ -41,16 +41,16 @@ public class SimpleSequential extends QueryResponder {
 
         int queryPopulation = 0;
 
-        double EWMin = map.west + ((west - 1) * xScale);
-        double EWMax = map.west + (east * xScale);
-        double NSMin = map.south + ((south - 1) * yScale);
-        double NSMax = map.south + (north * yScale);
+        double W = map.west + ((west - 1) * xScale);
+        double E = map.west + (east * xScale);
+        double S = map.south + ((south - 1) * yScale);
+        double N = map.south + (north * yScale);
 
         for(CensusGroup group: censusData) {
-            if(group.longitude >= EWMin) {
-                if(group.latitude >= NSMin) {
-                    if((group.longitude < EWMax) || ((east == numColumns) && (group.longitude <= EWMax))) {
-                        if((group.latitude < NSMax) || ((north == numRows) && (group.latitude <= NSMax))) {
+            if(group.longitude >= W) {
+                if(group.latitude >= S) {
+                    if((group.longitude < E) || ((east == numColumns) && (group.longitude <= E))) {
+                        if((group.latitude < N) || ((north == numRows) && (group.latitude <= N))) {
                             queryPopulation += group.population;
                         }
                     }
