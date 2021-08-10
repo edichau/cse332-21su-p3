@@ -39,7 +39,7 @@ public class ComplexSequential extends QueryResponder {
         for(CensusGroup group: censusData) {
             int column = (int) ((group.latitude + xShift ) /xScale) ;
             int row = (int) ((group.longitude + yShift) /yScale) ;
-            censusMatrix[row][column] = group.population;
+            censusMatrix[row][column] += group.population;
 
         }
 
