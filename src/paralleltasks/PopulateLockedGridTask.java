@@ -24,7 +24,19 @@ public class PopulateLockedGridTask extends Thread{
 
     public PopulateLockedGridTask(CensusGroup[] censusGroups, int lo, int hi, int numRows, int numColumns, MapCorners corners,
                                   double cellWidth, double cellHeight, int[][] popGrid, Lock[][] lockGrid) {
-        throw new NotYetImplementedException();
+        this.censusGroups = censusGroups;
+        this.lo = lo;
+        this.hi = hi;
+        this.numRows = numRows;
+        this.numColumns = numColumns;
+        this.cellWidth = cellWidth;
+        this.cellHeight = cellHeight;
+        this.corners = corners;
+        this.populationGrid = popGrid;
+        this.lockGrid = new Lock[numRows][numColumns];
+
+
+
     }
 
     @Override

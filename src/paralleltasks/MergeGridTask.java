@@ -44,7 +44,7 @@ public class MergeGridTask extends RecursiveAction {
     private void sequentialMergeGird(int rowLo, int rowHi, int colLo, int colHi) {
         for (int i = colLo; i < colHi; i++) {
             for (int j = rowLo; j < rowHi; j++) {
-                left[i][j] += right[i][j];
+                left[j][i] += right[j][i];
             }
         }
     }

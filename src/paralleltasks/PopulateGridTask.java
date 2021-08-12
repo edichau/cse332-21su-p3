@@ -22,16 +22,51 @@ public class PopulateGridTask extends RecursiveTask<int[][]> {
     final static int SEQUENTIAL_CUTOFF = 10000;
 
     public PopulateGridTask(CensusGroup[] censusGroups, int lo, int hi, int numRows, int numColumns, MapCorners corners, double cellWidth, double cellHeight) {
-        throw new NotYetImplementedException();
+        this.lo = lo;
+        this.hi = hi;
+        this.censusGroups = censusGroups;
+        this.numRows = numRows;
+        this.numColumns = numColumns;
+        this.corners = corners;
+        this.cellWidth = cellWidth;
+        this.cellHeight = cellHeight;
     }
 
     @Override
     protected int[][] compute() {
-        throw new NotYetImplementedException();
+        if(hi-lo <= SEQUENTIAL_CUTOFF){
+            return sequentialPopulateGrid(censusGroups,lo,hi,numRows,numColumns,corners,cellWidth,cellHeight);
+        }
+        int mid = lo + (hi - lo) / 2;
+
+        PopulateGridTask left = new PopulateGridTask(censusGroups,lo,mid,numRows,numColumns,corners,cellWidth,cellHeight);
+        PopulateGridTask right = new PopulateGridTask(censusGroups,mid,hi,numRows,numColumns,corners,cellWidth,cellHeight);
+
+        left.fork();
+        int[][] rightResult = right.compute();
+        int[][] leftResult = left.join();
+
+        POOL.invoke(new MergeGridTask(leftResult,rightResult,0,numRows+1,0, numColumns+1));
+        return leftResult;
     }
 
-    private int[][] sequentialPopulateGrid() {
-        throw new NotYetImplementedException();
+    private int[][] sequentialPopulateGrid(CensusGroup[] censusGroups, int lo, int hi, int numRows, int numColumns, MapCorners corners, double cellWidth, double cellHeight) {
+        int[][] ret = new int[numRows+1][numColumns+1];
+
+        while (lo < hi) {
+
+            int row =  (int) Math.floor(((censusGroups[lo].latitude + (corners.south * -1)) /cellHeight) + 1);
+            int col =  (int) Math.floor(((censusGroups[lo].longitude + (corners.west * -1)) /cellWidth) + 1);
+
+            if(row > numRows) row = ret.length - 1;
+            if(col > numColumns) col = ret[0].length - 1;
+
+            ret[row][col] += censusGroups[lo].population;
+
+            lo++;
+        }
+
+        return ret;
     }
 }
 
