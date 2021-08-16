@@ -30,6 +30,7 @@ public class ComplexLockBased extends QueryResponder {
         this.corners = corner.getMapCorners();
 
         this.populationGrid= new int[numRows + 1][numColumns + 1];
+        //initialize matrix of locks to lock populationGrid cells
         this.lockGrid = new Lock[numRows + 1][numColumns + 1];
         for(int i = 0; i <= numRows; i++) {
             for(int j = 0; j<= numColumns; j++) {
@@ -39,7 +40,6 @@ public class ComplexLockBased extends QueryResponder {
 
         int work = censusData.length/NUM_THREADS;
         PopulateLockedGridTask[] tasks = new PopulateLockedGridTask[NUM_THREADS];
-
         for(int i=0; i< NUM_THREADS; i++) {
             tasks[i] = new PopulateLockedGridTask(censusData, (i * work), (i + 1) * work, numRows, numColumns, corners, populationGrid, lockGrid);
             tasks[i].start();
