@@ -1,10 +1,10 @@
 package paralleltasks;
 
-import cse332.exceptions.NotYetImplementedException;
 import cse332.types.CensusGroup;
 import cse332.types.MapCorners;
 
 import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /*
    1) This class is used in version 5 to create the initial grid holding the total population for each grid cell
@@ -17,30 +17,49 @@ public class PopulateLockedGridTask extends Thread{
     CensusGroup[] censusGroups;
     int lo, hi, numRows, numColumns;
     MapCorners corners;
-    double cellWidth, cellHeight;
     int[][] populationGrid;
     Lock[][] lockGrid;
+    double yScale, xScale, xShift, yShift;
+    int thread, numThreads;
 
 
     public PopulateLockedGridTask(CensusGroup[] censusGroups, int lo, int hi, int numRows, int numColumns, MapCorners corners,
-                                  double cellWidth, double cellHeight, int[][] popGrid, Lock[][] lockGrid) {
+                                  int[][] popGrid, Lock[][] lockGrid) {
         this.censusGroups = censusGroups;
         this.lo = lo;
         this.hi = hi;
         this.numRows = numRows;
         this.numColumns = numColumns;
-        this.cellWidth = cellWidth;
-        this.cellHeight = cellHeight;
+
         this.corners = corners;
         this.populationGrid = popGrid;
-        this.lockGrid = new Lock[numRows][numColumns];
 
+        this.lockGrid = lockGrid;
 
-
+        this.yScale = ( corners.north - corners.south) / (numRows);
+        this.xScale = (corners.east - corners.west) / (numColumns);
+        this.yShift = corners.south * -1;
+        this.xShift = corners.west  * -1;
     }
 
     @Override
     public void run() {
-        throw new NotYetImplementedException();
+        for(int i= lo; i<hi; i++) {
+            CensusGroup group = censusGroups[i];
+
+            int row = (int) Math.floor(((group.latitude + yShift) /yScale) + 1);
+            int column = (int) Math.floor(((group.longitude + xShift)/ xScale) + 1) ;
+            if(row > numRows) { row = numRows; }
+            if(column > numColumns) { column = numColumns; }
+
+            try {
+                lockGrid[row][column].lock();
+                populationGrid[row][column] += group.population;
+            } finally {
+                lockGrid[row][column].unlock();
+            }
+
+        }
     }
+
 }
