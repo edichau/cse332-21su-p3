@@ -50,6 +50,7 @@ public class ComplexLockBased extends QueryResponder {
                 tasks[i].join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                System.exit(1);
             }
         }
 
