@@ -48,6 +48,7 @@ public class Experiment extends QueryResponderTests{
         int[] numQueries = {1, 2, 3, 4, 5, 10, 25, 50, 75, 100};
 
         for(int i=0; i< numQueries.length; i++) {
+            //create new data set of length n
             Random r = new Random();
             queries = new Query[numQueries[i]];
             for(int k = 0; k < numQueries[i]; k++) {
@@ -63,7 +64,9 @@ public class Experiment extends QueryResponderTests{
             }
 
 
+            //time to search n queries in Simple
             start = System.nanoTime();
+            //we make sure to start with a new data structure each time
             STUDENT_100_500 = new SimpleSequential(data, 100, 500);
             for (int s = 0; s < numQueries[i]; s++) {
                 Query q = queries[s];
@@ -73,6 +76,7 @@ public class Experiment extends QueryResponderTests{
             long timeS = Math.subtractExact(end, start);
             simpleData[i] = timeS;
 
+            //time to search n queries in Complex
             start = System.nanoTime();
             STUDENT_100_500 = new ComplexSequential(data, 100, 500);
             for (int c = 0; c < numQueries[i]; c++) {
@@ -84,6 +88,9 @@ public class Experiment extends QueryResponderTests{
             complexData[i] = timeC;
         }
 
+
+        //Print results to put into table
+        System.out.println("Simple");
         for(int i=0; i<numQueries.length; i++) {
             System.out.println(simpleData[i]);
         }

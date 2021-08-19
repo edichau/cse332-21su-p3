@@ -47,7 +47,6 @@ public class ComplexLockBased extends QueryResponder {
             } else {
                 tasks[i].run();
             }
-
         }
 
         for(int i=0; i< NUM_THREADS; i++) {

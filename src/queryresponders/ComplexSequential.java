@@ -3,10 +3,8 @@ package queryresponders;
 import cse332.interfaces.QueryResponder;
 
 import cse332.types.*;
-import cse332.exceptions.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Random;
 
 
 public class ComplexSequential extends QueryResponder {
@@ -97,4 +95,42 @@ public class ComplexSequential extends QueryResponder {
         return true;
     }
 
+    public static class Experiments {
+        static Query[] queries;
+        static CensusGroup[] data;
+
+
+
+        public static void init() {
+            Random r = new Random();
+            queries = new Query[500];
+
+            for(int i = 0; i < 500; i++) {
+                int long1= r.nextInt(100);
+                int long2= r.nextInt(100);
+                int lat1= r.nextInt(500);
+                int lat2= r.nextInt(500);
+                int E = Math.max(lat1, lat2);
+                int N = Math.max(long1, long2);
+                int W = Math.min(lat1, lat2);
+                int S = Math.min(long1, long2);
+                queries[i] = new Query(N, S, E, W);
+            }
+        }
+
+
+        private static class Query {
+            int n;
+            int s;
+            int e;
+            int w;
+
+            public Query(int north, int south, int east, int west) {
+                this.n = north;
+                this.s = south;
+                this.e = east;
+                this.w = west;
+            }
+        }
+    }
 }

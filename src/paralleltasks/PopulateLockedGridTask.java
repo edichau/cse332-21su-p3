@@ -58,6 +58,7 @@ public class PopulateLockedGridTask extends Thread{
                 lockGrid[row][column].unlock();
             }
         }
+
     }
 
 }

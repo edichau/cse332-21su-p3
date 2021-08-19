@@ -36,7 +36,7 @@ public class SimpleSequential extends QueryResponder {
     @Override
     public int getPopulation(int west, int south, int east, int north) {
         if(!validParameters(west, south, east, north)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("East: " + east + " West: " + west + " North: " + north + " South: " + south);
         }
 
         int queryPopulation = 0;
