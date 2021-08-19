@@ -43,9 +43,9 @@ public class Experiment extends QueryResponderTests{
     public void testFullMap_100_500() {
         long start;
         long end;
-        long[] simpleData = new long[10];
-        long[] complexData = new long[10];
-        int[] numQueries = {1, 2, 3, 4, 5, 10, 25, 50, 75, 100};
+        long[] simpleData = new long[14];
+        long[] complexData = new long[14];
+        int[] numQueries = {1, 2, 3, 4, 5, 10, 25, 50, 75, 100, 150, 200, 250, 300};
 
         for(int i=0; i< numQueries.length; i++) {
             //create new data set of length n
