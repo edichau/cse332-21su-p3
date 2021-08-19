@@ -42,7 +42,12 @@ public class ComplexLockBased extends QueryResponder {
         PopulateLockedGridTask[] tasks = new PopulateLockedGridTask[NUM_THREADS];
         for(int i=0; i< NUM_THREADS; i++) {
             tasks[i] = new PopulateLockedGridTask(censusData, (i * work), (i + 1) * work, numRows, numColumns, corners, populationGrid, lockGrid);
-            tasks[i].start();
+            if(i != NUM_THREADS - 1){
+                tasks[i].start();
+            } else {
+                tasks[i].run();
+            }
+
         }
 
         for(int i=0; i< NUM_THREADS; i++) {
